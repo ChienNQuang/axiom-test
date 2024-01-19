@@ -8,12 +8,12 @@ import (
 )
 
 func main() {
-	binary, lookErr := exec.LookPath("axiom-images")
+	binary, lookErr := exec.LookPath("docker")
 	if lookErr != nil {
 		panic(lookErr)
 	}
 	fmt.Println(binary)
-	args := []string{"get"}
+	args := []string{"exec", "axiom_tool", "/root/.axiom/interact/axiom-images", "get"}
 	env := os.Environ()
 	execErr := syscall.Exec(binary, args, env)
 	if execErr != nil {
